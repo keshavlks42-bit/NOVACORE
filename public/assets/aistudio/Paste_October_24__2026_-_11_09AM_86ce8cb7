@@ -1,0 +1,1125 @@
+PROJECT NAME: MachineSentry AI
+
+TAGLINE:
+"Detect Anomalies Early. Maintain Machines Smarter."
+
+PROJECT CATEGORY:
+AI/ML + Industrial IoT + Predictive Maintenance
+
+PROJECT PURPOSE:
+Build a functional, professional, responsive web application
+that demonstrates affordable machine-condition monitoring using
+audio analysis, machine-learning-based anomaly detection, and
+optional vibration-sensor data.
+
+The target users are small factories, workshops, maintenance
+technicians, engineering students, and small industrial businesses
+that cannot afford expensive monitoring systems for every machine.
+
+This project should be suitable for a college engineering
+hackathon and should demonstrate real technical depth.
+
+IMPORTANT:
+Do not create only a landing page or a static dashboard.
+
+Build a working end-to-end prototype with actual data processing,
+anomaly detection, interactive visualizations, persistent demo
+records, and meaningful error handling.
+
+Do not pretend that simulated data is live sensor data.
+Clearly distinguish real uploaded recordings, simulated readings,
+and actual hardware measurements.
+
+Prioritize a working core application over decorative animations.
+
+====================================================
+1. THE CORE PROBLEM
+====================================================
+
+Small factories often operate motors, pumps, fans, and other
+machines without sophisticated condition-monitoring equipment.
+
+Unexpected machine problems can lead to:
+
+- Production interruptions.
+- Unexpected maintenance costs.
+- Equipment damage.
+- Difficulties identifying abnormal operating behaviour early.
+- Dependence on expensive industrial monitoring systems.
+
+Traditional supervised machine-learning systems often require
+labelled examples of different machine failures.
+
+However, small factories may have many examples of normal
+operation and very few examples of actual faults.
+
+The proposed solution is MachineSentry AI.
+
+MachineSentry learns the characteristics of normal machine
+operation and detects unusual sound patterns.
+
+If vibration data is available, the application can analyse
+vibration features as an additional signal.
+
+The application generates an anomaly score and provides
+evidence-based explanations to help a maintenance technician
+decide whether an inspection is appropriate.
+
+CORE TECHNICAL IDEA:
+
+Learn a baseline from normal operating data.
+
+Compare new observations against that baseline.
+
+Detect unusual patterns.
+
+Display the anomaly score, relevant features, and a suggested
+inspection action.
+
+IMPORTANT SCIENTIFIC LIMITATION:
+
+An anomaly is not automatically a machine failure.
+
+The system must not claim to predict the exact failure type,
+remaining useful life, or time until breakdown unless those
+capabilities are separately trained and validated using
+appropriate labelled data.
+
+Describe the initial product as an anomaly-detection and
+maintenance-support system, not a certified diagnostic tool.
+
+====================================================
+2. TARGET USERS
+====================================================
+
+Design the application for:
+
+1. Small manufacturing businesses.
+2. Workshop operators.
+3. Maintenance technicians.
+4. Engineering students.
+5. Industrial IoT researchers.
+6. Small businesses with limited monitoring budgets.
+
+The interface must be understandable to someone who is not
+an expert in machine learning.
+
+Technical details should remain available in a dedicated
+analysis section.
+
+====================================================
+3. TECHNOLOGY STACK
+====================================================
+
+Use the following architecture where the development environment
+supports it.
+
+FRONTEND:
+- React.
+- TypeScript.
+- Modern CSS or Tailwind CSS.
+- Reusable components.
+- Responsive layouts.
+- Charting library such as Recharts.
+
+MACHINE-LEARNING BACKEND:
+- Python.
+- NumPy.
+- SciPy.
+- librosa for audio processing.
+- scikit-learn for baseline anomaly detection.
+- FastAPI for HTTP endpoints, if supported by the environment.
+
+DATA STORAGE:
+- SQLite or another suitable database when a backend is available.
+- Local storage for a frontend-only demonstration if necessary.
+
+AUDIO ANALYSIS:
+- WAV file support.
+- Sample-rate-aware audio processing.
+- MFCC features.
+- Root mean square energy.
+- Spectral centroid.
+- Spectral bandwidth.
+- Spectral rolloff.
+- Zero-crossing rate.
+- Additional suitable features where useful.
+
+ANOMALY DETECTION:
+- Isolation Forest as the initial baseline model.
+- One-Class SVM as an optional alternative.
+- A simple statistical baseline for comparison.
+- An extensible architecture for future autoencoder models.
+
+Do not force every library into the initial implementation.
+
+If Google AI Studio's runtime cannot directly run a Python
+backend, implement a clear separation between the frontend and
+the proposed Python API.
+
+Provide a functional browser-based demonstration where possible.
+
+Do not replace real machine-learning functionality with an
+AI-generated explanation pretending to be a model prediction.
+
+If a feature cannot execute in the current environment,
+label it as a demonstration or provide the required backend
+interface and setup instructions.
+
+====================================================
+4. WEBSITE DESIGN
+====================================================
+
+Create a premium industrial technology interface.
+
+DESIGN DIRECTION:
+
+- Dark navy background.
+- Slate and charcoal surfaces.
+- Cyan and blue accents.
+- Amber for warnings.
+- Red for high-severity alerts.
+- Green for normal status.
+- Clean typography.
+- Professional engineering dashboard.
+- Subtle animations.
+- High-contrast data visualizations.
+- Rounded cards with restrained shadows.
+- Clear navigation.
+- Accessible forms and buttons.
+
+Avoid excessive gradients, excessive animations, and
+unnecessary decorative elements.
+
+The application should feel like a credible industrial
+monitoring product rather than a generic AI landing page.
+
+The layout must work on desktop, tablet, and mobile devices.
+
+Use a left navigation sidebar on desktop and a collapsible
+navigation menu on smaller screens.
+
+====================================================
+5. MAIN APPLICATION STRUCTURE
+====================================================
+
+Create the following pages and sections:
+
+A. Overview Dashboard
+B. Machine Management
+C. Audio Analysis
+D. Anomaly Detection
+E. Vibration Monitoring
+F. Maintenance History
+G. Reports
+H. Settings and Model Information
+
+All major navigation items must work.
+
+Do not create empty pages with placeholder headings.
+
+Where a feature is not implemented, explicitly label it
+as planned or simulated.
+
+====================================================
+6. OVERVIEW DASHBOARD
+====================================================
+
+Create a dashboard with summary cards.
+
+Display:
+
+- Number of registered demo machines.
+- Number of machines currently marked Normal.
+- Number of machines requiring Attention.
+- Number of unresolved anomaly alerts.
+- Number of inspections recorded.
+- Latest analysis timestamp.
+
+These values must be derived from application data.
+
+Do not hardcode dashboard totals independently of the data.
+
+Include:
+
+1. Recent anomaly alerts.
+2. Anomaly-score history chart.
+3. Machine status distribution.
+4. Recent analysis records.
+5. Maintenance activity.
+6. A button to analyse a new recording.
+7. A button to register a machine.
+8. A button to open the demonstration scenario.
+
+Use sample data only for the initial demonstration.
+
+Mark sample data clearly as DEMO DATA.
+
+Allow the dashboard to update when the user performs actions.
+
+====================================================
+7. MACHINE MANAGEMENT
+====================================================
+
+Create a machine-management page.
+
+Users should be able to:
+
+- Add a machine.
+- Edit machine information.
+- View machine details.
+- Archive a machine.
+- Select a machine for analysis.
+
+Each machine record should include:
+
+- Machine ID.
+- Machine name.
+- Machine category.
+- Location.
+- Machine description.
+- Date registered.
+- Operating conditions, if known.
+- Associated audio baseline.
+- Associated vibration baseline, if available.
+- Latest analysis result.
+- Maintenance notes.
+
+Example machine profiles:
+
+1. Motor A.
+2. Water Pump B.
+3. Industrial Fan C.
+4. Compressor D.
+
+Clearly identify these as fictional demo machines.
+
+Allow users to register additional machines through a form.
+
+Persist the records using the available storage mechanism.
+
+====================================================
+8. AUDIO UPLOAD AND ANALYSIS
+====================================================
+
+This is one of the most important features.
+
+Create an interactive audio-analysis page.
+
+The user should be able to:
+
+1. Select a registered machine.
+2. Upload an audio recording.
+3. View the recording filename.
+4. View the recording duration.
+5. Play the audio.
+6. Inspect the waveform.
+7. Run feature extraction.
+8. Run anomaly detection.
+9. View the results.
+10. Save the analysis to the history.
+
+Support WAV files initially.
+
+Validate file type, file size, duration, and audio readability.
+
+Display helpful error messages when a file cannot be processed.
+
+If audio playback or waveform rendering fails, show a useful
+error rather than silently failing.
+
+The application must not require the user to upload audio to
+an external AI provider merely to perform basic anomaly detection.
+
+Where feasible, process recordings locally or through the
+application's configured backend.
+
+Provide a privacy notice explaining how uploaded recordings
+are processed and stored.
+
+----------------------------------------------------
+AUDIO FEATURE EXTRACTION
+----------------------------------------------------
+
+Implement actual feature extraction.
+
+Where Python is available, use librosa, NumPy, and SciPy.
+
+Calculate suitable features such as:
+
+1. RMS energy.
+2. MFCC statistics.
+3. Spectral centroid.
+4. Spectral bandwidth.
+5. Spectral rolloff.
+6. Zero-crossing rate.
+7. Spectral flux, if implemented appropriately.
+
+Display selected features in a table or visualization.
+
+Show units where appropriate.
+
+For each feature, explain in simple language what it measures.
+
+Example:
+
+RMS Energy:
+An estimate of the signal's average energy.
+
+Spectral Centroid:
+A measure associated with the distribution of spectral energy.
+
+MFCC:
+A compact representation of characteristics of the audio spectrum.
+
+Do not claim that one feature alone proves that a machine is faulty.
+
+----------------------------------------------------
+NORMAL BASELINE
+----------------------------------------------------
+
+Allow users to establish a baseline for each machine.
+
+The baseline should be created from multiple representative
+recordings of normal operation whenever possible.
+
+Provide a workflow:
+
+1. Select a machine.
+2. Upload normal-operation recordings.
+3. Extract features.
+4. Review the baseline data.
+5. Train or update the baseline model.
+6. Display the number of recordings used.
+7. Save the baseline version and creation date.
+
+Prevent accidental mixing of recordings from different
+machines into one baseline unless the user explicitly chooses
+a shared model and the limitations are explained.
+
+The system should account for known differences in operating
+conditions where possible.
+
+====================================================
+9. ANOMALY-DETECTION ENGINE
+====================================================
+
+Implement a real, baseline-driven anomaly-detection pipeline.
+
+INITIAL MODEL:
+Isolation Forest using features extracted from normal-operation
+recordings.
+
+OPTIONAL COMPARISON:
+A statistical baseline or One-Class SVM.
+
+The user should be able to:
+
+- Select a machine.
+- Choose its trained baseline.
+- Upload a new recording.
+- Extract its features.
+- Calculate an anomaly score.
+- Compare the result against the baseline.
+- Review which features differ from normal observations.
+
+The application must distinguish:
+
+A. Model decision score.
+B. Normalized display score.
+C. Alert threshold.
+D. User-configured alert sensitivity.
+
+Do not present an arbitrary number between 0 and 100 as a
+scientifically calibrated probability of failure.
+
+If the model produces a decision score, explain its meaning.
+
+If a normalized display score is used, label it as an
+anomaly indicator rather than a probability of failure.
+
+The alert threshold should be configurable and documented.
+
+Where sufficient normal training observations are available,
+allow the user to select a threshold using baseline calibration.
+
+Explain that an anomaly detector trained only on normal data
+cannot reliably identify every possible fault type.
+
+----------------------------------------------------
+MODEL TRAINING AND VALIDATION
+----------------------------------------------------
+
+Separate training data from evaluation data.
+
+Avoid training and testing on the same recordings.
+
+Where possible, split recordings by recording session or source
+so that nearly identical segments do not leak between training
+and evaluation sets.
+
+Report:
+
+- Number of baseline recordings.
+- Number of evaluation recordings.
+- Feature extraction status.
+- Model type.
+- Threshold configuration.
+- Evaluation limitations.
+
+If labelled normal and anomalous examples are available,
+calculate appropriate metrics such as:
+
+- Precision.
+- Recall.
+- F1 score.
+- False-positive rate.
+- Confusion matrix.
+
+Only display these metrics when actual evaluation data supports
+their calculation.
+
+If labels are unavailable, explain that conventional supervised
+classification metrics cannot be calculated reliably.
+
+====================================================
+10. FEW-SHOT AND LIMITED-DATA STRATEGY
+====================================================
+
+An important research direction for MachineSentry is anomaly
+detection when only a small amount of operating data is available.
+
+Do not claim to have solved few-shot learning merely because
+the application uses an anomaly-detection model.
+
+Build a small-data experiment mode.
+
+Allow the user to select:
+
+- Small baseline.
+- Medium baseline.
+- Larger baseline.
+
+Where sufficient data exists, train and evaluate the same model
+under these different training-data conditions.
+
+Display:
+
+- Number of baseline recordings.
+- Anomaly-score distribution.
+- Evaluation results, if valid.
+- Changes in detection behaviour.
+- Limitations caused by small datasets.
+
+Use the same held-out evaluation set when comparing different
+training sizes.
+
+If there is not enough data for a valid experiment, display a
+clear explanation rather than inventing results.
+
+For the initial prototype, focus on reliable baseline-driven
+anomaly detection before attempting advanced few-shot methods.
+
+====================================================
+11. EXPLAINABLE ALERTS
+====================================================
+
+Create an evidence-based alert explanation panel.
+
+Example:
+
+ALERT:
+Unusual sound pattern detected.
+
+MODEL RESULT:
+The recording differs from the selected normal baseline.
+
+OBSERVED EVIDENCE:
+- RMS energy differs from the baseline distribution.
+- Spectral centroid differs from the baseline distribution.
+- Several MFCC statistics are outside their usual range.
+
+NEXT STEP:
+Inspect the machine and record the findings if an inspection
+is appropriate.
+
+IMPORTANT:
+
+The displayed features must come from the actual analysis.
+
+Do not invent evidence or ask an AI model to fabricate a
+mechanical diagnosis.
+
+Use feature deviations, baseline statistics, and model output
+to construct explanations.
+
+If no specific feature deviation can be established, use a
+general explanation.
+
+Never state that a bearing, motor winding, or other component
+has failed unless that diagnosis is supported by separately
+validated data.
+
+Use three alert levels:
+
+1. Normal Pattern.
+2. Review Recommended.
+3. Significant Anomaly.
+
+These levels describe anomaly severity, not a certified
+estimate of failure probability.
+
+Display a note:
+
+"MachineSentry identifies unusual operating patterns. An alert
+is not proof of mechanical failure. Inspect the equipment and
+follow appropriate safety procedures."
+
+====================================================
+12. VIBRATION MONITORING
+====================================================
+
+Create a vibration-monitoring section.
+
+Support two modes:
+
+MODE A: DEMONSTRATION DATA
+
+Generate clearly labelled synthetic vibration measurements
+for demonstration.
+
+Display:
+
+- Vibration amplitude.
+- Trend over time.
+- Sample timestamps.
+- Configurable alert threshold.
+- Example anomaly events.
+
+Never label synthetic readings as live sensor measurements.
+
+MODE B: IMPORTED SENSOR DATA
+
+Where feasible, allow users to upload CSV files containing
+timestamped vibration measurements.
+
+Validate the CSV format and units.
+
+Display the imported signal and its trend.
+
+Allow the user to select the relevant machine.
+
+If sampling frequency is available, use it when calculating
+frequency-domain features.
+
+Do not calculate physically meaningful frequency features
+without adequate sampling information.
+
+Where useful, calculate:
+
+- RMS amplitude.
+- Peak amplitude.
+- Crest factor.
+- Frequency-domain summaries.
+
+Explain that the physical interpretation depends on sensor
+placement, calibration, sampling rate, and machine operating
+conditions.
+
+Design the architecture so that a future microcontroller
+or vibration sensor could send measurements to the backend.
+
+Do not require physical hardware for the initial prototype.
+
+====================================================
+13. MULTIMODAL ANOMALY ANALYSIS
+====================================================
+
+Create an extensible architecture that can combine audio and
+vibration information when both are available.
+
+The system should:
+
+1. Analyse audio independently.
+2. Analyse vibration independently.
+3. Show the results separately.
+4. Display whether both signals are available.
+5. Optionally produce a combined anomaly indicator when a
+   suitable fusion method has been implemented and evaluated.
+
+Do not combine unrelated scores by simply adding them together
+without explaining or validating the method.
+
+If only audio is available, the application must still work.
+
+If only vibration data is available, the application should
+still provide the supported vibration analysis.
+
+If neither real audio nor imported sensor data is available,
+offer an explicitly labelled demonstration mode.
+
+====================================================
+14. LIVE MICROPHONE MODE
+====================================================
+
+If the browser supports microphone access, add a recording mode.
+
+Requirements:
+
+- Ask the user for microphone permission.
+- Display a clear recording indicator.
+- Allow the user to start and stop recording.
+- Display recording duration.
+- Provide playback before analysis.
+- Allow the user to discard a recording.
+- Allow the user to submit it for analysis.
+- Explain that environmental noise can affect results.
+
+Do not record secretly.
+
+Do not automatically upload microphone recordings without
+clear user action.
+
+If the model or backend cannot analyse audio in real time,
+record a short clip and analyse it after recording stops.
+
+Label this as clip-based analysis rather than continuous
+real-time monitoring.
+
+====================================================
+15. MAINTENANCE HISTORY
+====================================================
+
+Create a maintenance-history page.
+
+Allow users to record:
+
+- Machine ID.
+- Date.
+- Associated anomaly alert.
+- Inspection status.
+- Technician notes.
+- Maintenance action.
+- Parts replaced, if applicable.
+- Final inspection outcome.
+
+Suggested statuses:
+
+- New Alert.
+- Inspection Pending.
+- Inspection Completed.
+- Maintenance Required.
+- No Issue Found.
+- Closed.
+
+Allow users to update a record's status.
+
+Keep the anomaly result separate from the technician's
+inspection outcome.
+
+This distinction is important because an anomaly may not
+indicate a fault.
+
+Create a timeline showing machine analyses and inspections.
+
+====================================================
+16. REPORTS AND EXPORTS
+====================================================
+
+Create a reporting page.
+
+Allow users to filter reports by:
+
+- Machine.
+- Date range.
+- Alert severity.
+- Inspection status.
+
+Display:
+
+- Number of analysed recordings.
+- Number of detected anomalies.
+- Number of completed inspections.
+- Number of alerts that led to maintenance.
+- Number of alerts where no issue was found.
+
+Calculate these values from actual stored records.
+
+Allow CSV export of analysis history and maintenance records.
+
+If a PDF export is implemented, ensure that it contains
+accurate data and timestamps.
+
+Do not calculate financial savings unless the user provides
+appropriate cost data.
+
+If estimated savings are displayed, label them as estimates
+and show the assumptions.
+
+====================================================
+17. DEMONSTRATION DATASET
+====================================================
+
+Include a clearly labelled demo mode.
+
+Provide fictional demo machines and example records so that
+the dashboard is usable immediately.
+
+The initial demo can include:
+
+- Motor A.
+- Pump B.
+- Fan C.
+
+Include example statuses and sample chart data.
+
+However, separate demonstration data from actual model results.
+
+Do not invent successful model predictions for recordings
+that have not actually been processed.
+
+For a fully working demonstration, provide a sample-data
+generator and a way to run the anomaly-detection pipeline on
+the generated feature data.
+
+If actual sample audio files cannot be bundled, provide
+instructions for loading a suitable public dataset.
+
+Potential datasets to investigate include:
+
+- MIMII industrial machine-sound dataset.
+- ToyADMOS machine-sound anomaly-detection dataset.
+
+Check their licensing and access requirements before use.
+
+Do not assume that downloading or redistribution is permitted.
+
+Create a dataset-import interface that validates files and
+shows the number of successfully imported recordings.
+
+====================================================
+18. PUBLIC DATASET EXPERIMENT
+====================================================
+
+Create an experiment workflow suitable for a college hackathon.
+
+The experiment should:
+
+1. Load a supported public machine-sound dataset.
+2. Select one machine category.
+3. Separate training and evaluation recordings.
+4. Train the anomaly detector on normal recordings.
+5. Analyse the held-out recordings.
+6. Display anomaly scores.
+7. Compare scores with available ground-truth labels.
+8. Calculate metrics when the labels support them.
+9. Display a confusion matrix when appropriate.
+
+Prevent data leakage between training and evaluation.
+
+Do not report fabricated accuracy percentages.
+
+If a dataset is not available in the environment, show the
+required upload workflow and setup instructions.
+
+Do not claim the experiment has run until it actually has.
+
+====================================================
+19. OPTIONAL AI EXPLANATION ASSISTANT
+====================================================
+
+Add an optional "Explain This Alert" feature.
+
+The assistant should translate existing analysis results into
+plain language for a maintenance technician.
+
+It may explain:
+
+- What an anomaly score means.
+- Which measured features differ from the baseline.
+- What additional information would help an investigation.
+- General, non-diagnostic inspection considerations.
+
+It must use the application's existing analysis results.
+
+It must not invent sensor readings, model scores, or evidence.
+
+It must not claim certainty about a particular mechanical fault.
+
+If Gemini API integration is used:
+
+- Keep the API key out of frontend source code.
+- Use an appropriate server-side integration.
+- Do not expose private credentials.
+- Handle API errors and rate limits.
+- Avoid sending unnecessary personal or confidential data.
+
+The core anomaly-detection pipeline must continue to work
+without the optional Gemini explanation feature.
+
+====================================================
+20. DATA MODEL
+====================================================
+
+Use appropriate data structures or database tables for:
+
+MACHINES:
+- ID.
+- Name.
+- Category.
+- Location.
+- Description.
+- Creation timestamp.
+- Archived status.
+
+BASELINES:
+- ID.
+- Machine ID.
+- Model type.
+- Feature configuration.
+- Training-record count.
+- Threshold configuration.
+- Creation timestamp.
+- Model version.
+
+ANALYSES:
+- ID.
+- Machine ID.
+- Recording identifier.
+- Input source.
+- Analysis timestamp.
+- Extracted features.
+- Model score.
+- Display score, if used.
+- Alert level.
+- Model version.
+- Analysis status.
+
+MAINTENANCE RECORDS:
+- ID.
+- Machine ID.
+- Associated analysis ID.
+- Inspection timestamp.
+- Status.
+- Technician notes.
+- Inspection outcome.
+- Maintenance action.
+
+DATASETS:
+- ID.
+- Dataset name.
+- Machine category.
+- Recording count.
+- Label availability.
+- Import timestamp.
+
+Validate relationships between records.
+
+Use safe handling for filenames and uploaded files.
+
+Avoid storing sensitive information that the application
+does not need.
+
+====================================================
+21. SECURITY AND RELIABILITY
+====================================================
+
+Implement:
+
+- File-type validation.
+- Upload-size limits.
+- Audio decoding error handling.
+- CSV validation.
+- Input validation.
+- Safe rendering of user-entered text.
+- Clear error messages.
+- Loading indicators.
+- Empty states.
+- Accessible forms.
+- No exposed API secrets.
+- No unnecessary data collection.
+
+Do not treat uploaded audio or CSV files as trusted input.
+
+Do not execute uploaded files.
+
+If a database is used, handle errors and maintain record
+consistency.
+
+If the application is frontend-only, clearly explain the
+limitations of browser storage.
+
+====================================================
+22. HACKATHON DEMONSTRATION MODE
+====================================================
+
+Create a dedicated demonstration scenario.
+
+Title:
+"Can MachineSentry Detect a Change in Machine Behaviour?"
+
+The scenario should demonstrate:
+
+STEP 1:
+Select a fictional machine called Motor A.
+
+STEP 2:
+Load a set of normal baseline feature observations.
+
+STEP 3:
+Train the selected anomaly-detection model.
+
+STEP 4:
+Analyse a new held-out observation.
+
+STEP 5:
+Display its anomaly score and the relevant feature
+differences.
+
+STEP 6:
+Show an evidence-based alert.
+
+STEP 7:
+Allow the user to record an inspection result.
+
+STEP 8:
+Display the event in maintenance history.
+
+Use deterministic data so the demonstration is repeatable.
+
+The demo should make it obvious which data is simulated.
+
+Do not claim to have detected a real machine failure.
+
+Provide a "Reset Demo" button.
+
+====================================================
+23. PRODUCTION-READINESS NOTES
+====================================================
+
+Include a documentation page explaining what is needed before
+deployment in a real industrial environment.
+
+Discuss:
+
+- Real sensor calibration.
+- Environmental noise.
+- Machine-specific baselines.
+- Changes in machine operating conditions.
+- Model drift.
+- False-positive alerts.
+- Missed anomalies.
+- Dataset quality.
+- Industrial validation.
+- Data privacy.
+- Hardware integration.
+- Deployment and maintenance costs.
+
+Clearly state that the prototype is not a replacement for
+qualified maintenance inspections or safety systems.
+
+Do not claim certification or guaranteed prevention of failure.
+
+====================================================
+24. ACCEPTANCE CRITERIA
+====================================================
+
+The generated application should satisfy these criteria:
+
+1. The app starts successfully.
+2. Navigation works.
+3. Users can create and manage demo machine records.
+4. Users can upload supported audio files where supported.
+5. Audio playback and feature extraction work.
+6. A baseline can be created from normal observations.
+7. An anomaly detector can be trained or fitted.
+8. A new observation can be scored against the baseline.
+9. The interface displays actual model output.
+10. Alert explanations are based on measured evidence.
+11. Demo vibration data is clearly labelled.
+12. Imported CSV data is validated.
+13. Maintenance records can be created and updated.
+14. Reports reflect stored records.
+15. CSV export works where implemented.
+16. The interface is responsive.
+17. Error messages are meaningful.
+18. Demo data is distinguishable from real measurements.
+19. The core workflow does not require a paid AI API.
+20. Setup and execution instructions are provided.
+
+Do not claim an acceptance criterion has been met unless
+the corresponding feature has actually been implemented.
+
+====================================================
+25. DEVELOPMENT ORDER
+====================================================
+
+Build the project in this order.
+
+PHASE 1:
+Create the React application, navigation, dashboard, machine
+management, and clearly labelled demo data.
+
+PHASE 2:
+Implement actual audio feature extraction and baseline-driven
+anomaly detection using the available Python environment.
+
+PHASE 3:
+Connect the analysis workflow to the dashboard and display
+actual model outputs.
+
+PHASE 4:
+Implement evidence-based alert explanations and maintenance
+history.
+
+PHASE 5:
+Add vibration CSV import, trend charts, and demonstration data.
+
+PHASE 6:
+Add experiment mode, evaluation metrics, and report export.
+
+PHASE 7:
+Improve responsive design, accessibility, error handling,
+and documentation.
+
+Start by implementing the first end-to-end workflow:
+
+Select Machine
+→ Load Baseline
+→ Analyse New Observation
+→ View Anomaly Score
+→ Review Evidence
+→ Record Inspection.
+
+Do not spend time perfecting decorative elements before
+this workflow works.
+
+====================================================
+26. FINAL DELIVERABLE
+====================================================
+
+Generate a polished, working MachineSentry AI prototype.
+
+Provide:
+
+- Complete application source code.
+- Clear project structure.
+- Installation instructions.
+- Required dependencies.
+- Backend startup instructions, if applicable.
+- Frontend startup instructions.
+- Sample-data instructions.
+- Dataset-import instructions.
+- Model-training instructions.
+- A clear description of implemented features.
+- A list of features that remain simulated or incomplete.
+
+If the environment cannot support the full architecture,
+implement the strongest working subset and explain exactly
+what remains to be connected.
+
+The final application should demonstrate genuine engineering
+work, practical anomaly detection, and a clear path toward
+affordable industrial monitoring.
+
+Build a functional product, not merely a visual mockup.

@@ -1,0 +1,6 @@
+{
+  "name": "MachineSentry AI",
+  "description": "Industrial machine-condition monitoring with acoustic anomaly detection, baseline machine learning, and vibration analysis.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
